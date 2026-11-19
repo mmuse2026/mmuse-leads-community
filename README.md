@@ -19,6 +19,11 @@
 
 Windows 默认将数据存到 `%LOCALAPPDATA%\MMUSE Leads Community`。可以用 `python app.py --data-dir "目录路径"` 指定数据目录。
 
+## 联系我们
+
+- [MMUSE 官网](https://forms.mmues.com/)
+- [联系邮箱 mmuse2026@outlook.com](mailto:mmuse2026@outlook.com)
+
 ## 许可证
 
 [MIT](LICENSE)

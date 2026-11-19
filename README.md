@@ -8,9 +8,11 @@
 
 可查询企业、录入和去重客户、背调网页、管理联系人、准备开发邮件及跟进。使用模型、联系人和邮件服务时，请在工具内配置自己的服务账号。发布页提供 SHA-256 校验文件。
 
+[下载 v0.2.0-beta.1 源码 ZIP](https://github.com/mmuse2026/mmuse-leads-community/releases/download/v0.2.0-beta.1/MMUSE-Leads-Community-0.2.0-beta.1-Source.zip)。解压后查看 `BUILD.md`，可用 `Build-Source.cmd` 构建前后端并接入同版本的 Windows 运行环境。
+
 ## v0.1.x 源码
 
-本仓库当前的源码和下方使用说明对应 v0.1.x。
+仓库主分支内的 Python 程序和下方使用说明对应 v0.1.x。
 
 在本机整理外贸客户线索、记录跟进并检查邮箱。首次启动会创建空白客户库，可以直接开始录入，无需注册或登录。
 

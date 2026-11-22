@@ -1,0 +1,224 @@
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --glass-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 0 rgba(0, 0, 0, 0.02);
+  --glass-shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --accent-blue: #0071e3;
+  --card-radius: 16px;
+  --ease-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.3s var(--ease-smooth);
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.glass-stat {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  transition: all 0.3s var(--ease-smooth);
+}
+.glass-stat:hover {
+  transform: translateY(-2px);
+}
+
+body {
+  background: #f5f5f7;
+  color: #1d1d1f;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  ::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-400;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  input, select, textarea {
+    @apply outline-none;
+  }
+}
+
+@layer components {
+  .kanban-column {
+    @apply min-w-[280px] max-w-[320px] flex-shrink-0
+           bg-surface-50 rounded-xl p-3 flex flex-col max-h-full
+           border border-surface-200;
+  }
+  .pipeline-card {
+    @apply bg-white rounded-lg p-3.5 border border-surface-200 cursor-pointer
+           shadow-card hover:shadow-card-hover hover:border-accent-200
+           transition-all duration-150;
+  }
+  .stat-card {
+    @apply bg-white rounded-xl p-5 border border-surface-200 shadow-panel
+           hover:shadow-card-hover transition-shadow duration-150;
+  }
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium
+           bg-surface-100 text-surface-600;
+  }
+  .badge-success {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium
+           bg-green-50 text-green-700;
+  }
+  .badge-warning {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium
+           bg-amber-50 text-amber-700;
+  }
+  .badge-danger {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium
+           bg-red-50 text-red-700;
+  }
+  .badge-info {
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium
+           bg-accent-50 text-accent-700;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg
+           text-sm font-medium transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-accent-300;
+  }
+  .btn-primary {
+    @apply btn bg-accent-600 text-white hover:bg-accent-700
+           active:bg-accent-700 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-ghost {
+    @apply btn text-surface-600 hover:bg-surface-100
+           active:bg-surface-200;
+  }
+  .btn-outline {
+    @apply btn border border-surface-300 text-surface-700 hover:bg-surface-50
+           active:bg-surface-100;
+  }
+  .input {
+    @apply w-full px-3 py-2 bg-white border border-surface-200 rounded-lg
+           text-sm text-surface-900 placeholder-surface-400
+           focus:border-accent-500 focus:ring-2 focus:ring-accent-200
+           transition-all duration-150;
+  }
+  .section-title {
+    @apply text-xs font-semibold text-surface-400 uppercase tracking-wider;
+  }
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl border border-white/20 shadow-panel;
+  }
+  .glass-darker {
+    @apply bg-surface-50 backdrop-blur-xl border border-surface-200 shadow-panel;
+  }
+  .chip {
+    @apply px-3 py-1.5 rounded-lg text-xs font-medium border
+           border-surface-200 text-surface-500 bg-transparent
+           hover:border-surface-300 hover:text-surface-700
+           transition-all cursor-pointer;
+    font-family: inherit;
+  }
+  .chip.active {
+    @apply bg-accent-50 border-accent-300 text-accent-700;
+  }
+  .nav-item {
+    @apply flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium
+           text-surface-600 hover:bg-surface-100 hover:text-surface-800
+           transition-colors duration-150 cursor-pointer;
+  }
+}
+
+@layer components {
+  .directory-control-button {
+    @apply inline-flex h-9 items-center justify-center rounded-lg border border-black/[0.08]
+           bg-white/75 px-3 text-xs font-medium text-surface-600 backdrop-blur-xl
+           transition-colors hover:bg-white hover:text-surface-900 disabled:cursor-not-allowed;
+  }
+  .directory-icon-button {
+    @apply inline-flex h-8 w-8 items-center justify-center rounded-lg border border-black/[0.06]
+           bg-white/70 text-surface-500 backdrop-blur-xl transition-colors
+           hover:bg-surface-100 hover:text-surface-900 disabled:opacity-40;
+  }
+  .directory-filter {
+    @apply flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm
+           text-surface-600 transition-colors hover:bg-white hover:text-surface-900;
+  }
+  .directory-filter-active {
+    @apply bg-white font-medium text-surface-900 shadow-sm ring-1 ring-black/[0.04];
+  }
+  .directory-reminder {
+    @apply inline-flex items-center gap-1.5 rounded-lg bg-surface-100 px-2.5 py-1.5
+           text-xs text-surface-600 transition-colors hover:bg-surface-200 hover:text-surface-900;
+  }
+  .directory-reminder strong {
+    @apply font-semibold tabular-nums text-surface-900;
+  }
+  .directory-segment {
+    @apply inline-flex h-9 items-center gap-2 rounded-lg border border-black/[0.06]
+           bg-white/70 px-3 text-sm text-surface-600 backdrop-blur-xl transition-colors
+           hover:bg-white hover:text-surface-900;
+  }
+  .directory-segment strong {
+    @apply text-xs font-semibold tabular-nums text-surface-400;
+  }
+  .directory-segment-active {
+    @apply bg-surface-900 text-white hover:bg-surface-800 hover:text-white;
+  }
+  .directory-segment-active strong {
+    @apply text-white/70;
+  }
+}
+
+/* V29 shared presentation: no business-state selectors or hidden controls. */
+[data-v29-ui] {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+}
+[data-v29-ui] :is(button, a, summary, select, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+[data-v29-ui] :is(input, select, textarea) { font-family: inherit; }
+[data-v29-ui] :is(.shadow-panel, .shadow-card) { box-shadow: 0 1px 2px rgb(15 23 42 / 0.03); }
+[data-v29-ui] :is(.glass-card, .glass-stat, .pipeline-card, .stat-card):hover { transform: none; }
+[data-v29-ui] .ui-disclosure {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  padding: 16px;
+}
+[data-v29-ui] .ui-disclosure > summary {
+  cursor: pointer;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+[data-v29-ui] .ui-disclosure[open] > summary { margin-bottom: 16px; }
+[data-v29-ui] .page-head, [data-v29-ui] .section-head { overflow-wrap: anywhere; }
+[data-v29-ui] .daily-lead-row { overflow-wrap: anywhere; }

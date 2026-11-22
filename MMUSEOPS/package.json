@@ -1,0 +1,38 @@
+{
+  "name": "mmuse-ops",
+  "private": true,
+  "version": "0.2.0",
+  "description": "MMUSE OPS foreign trade lead development workspace",
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "dexie": "^4.0.8",
+    "framer-motion": "^11.0.0",
+    "html2pdf.js": "^0.14.0",
+    "imapflow": "^1.5.0",
+    "nodemailer": "^9.0.3",
+    "papaparse": "^5.5.4",
+    "playwright": "^1.61.1",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "tldts": "^7.4.13",
+    "undici": "^6.21.0"
+  },
+  "devDependencies": {
+    "@types/html2pdf.js": "^0.10.0",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^10.0.3",
+    "electron": "^42.4.1",
+    "electron-builder": "^26.15.3",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0"
+  }
+}

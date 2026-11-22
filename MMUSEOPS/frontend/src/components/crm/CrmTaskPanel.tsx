@@ -1,0 +1,19 @@
+import { useState } from 'react'
+import type { PipelineItem } from '../../types/item'
+import type { CrmTask } from '../../types/crm'
+import { runCrmCommand } from '../../services/crmApi'
+import { normalizeEmailText } from '../../services/emailText'
+
+export default function CrmTaskPanel({item,onUpdated}:{item:PipelineItem;onUpdated:(item:PipelineItem)=>void}){
+  const [content,setContent]=useState('');const [dueAt,setDueAt]=useState('');const [priority,setPriority]=useState<CrmTask['priority']>('medium');const [type,setType]=useState<CrmTask['type']>('general_followup')
+  const execute=async(command:'task.create'|'task.complete'|'task.reschedule'|'task.cancel',payload:Record<string,unknown>)=>{try{onUpdated(await runCrmCommand(item.id,command,payload))}catch(e){alert(e instanceof Error?e.message:'任务更新失败')}}
+  const create=async()=>{if(!content.trim()||!dueAt)return;await execute('task.create',{task:{id:crypto.randomUUID(),type,content:content.trim(),dueAt:new Date(dueAt).toISOString(),priority,status:'pending',source:'manual',createdBy:'',createdAt:''}});setContent('');setDueAt('')}
+  const complete=(id:string)=>{const result=prompt('请填写完成结果');if(result?.trim())void execute('task.complete',{taskId:id,result:result.trim()})}
+  const reschedule=(id:string)=>{const value=prompt('新的时间（例如 2026-10-01 09:00）');const reason=value&&prompt('改期原因');if(value&&reason)void execute('task.reschedule',{taskId:id,dueAt:new Date(value).toISOString(),reason})}
+  const cancel=(id:string)=>{const reason=prompt('取消原因');if(reason?.trim())void execute('task.cancel',{taskId:id,reason:reason.trim()})}
+  const tasks=[...(item.crmTasks||[])].sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt))
+  return <section className="stat-card space-y-4"><h2 className="text-sm font-semibold text-surface-800">跟进任务</h2>
+    <div className="space-y-2">{tasks.map(t=><div key={t.id} className={`rounded-xl border p-3 ${t.status==='pending'?'border-surface-200':'border-surface-100 opacity-60'}`}><div className="flex flex-wrap justify-between gap-2"><div><strong className="text-sm">{normalizeEmailText(t.content)}</strong><p className="text-xs text-surface-500 mt-1">{new Date(t.dueAt).toLocaleString('zh-CN')} · {t.priority} · {t.status}</p></div>{t.status==='pending'&&<div className="flex gap-1"><button className="btn-primary text-xs" onClick={()=>complete(t.id)}>完成</button><button className="btn-ghost text-xs" onClick={()=>reschedule(t.id)}>改期</button><button className="btn-ghost text-xs text-red-600" onClick={()=>cancel(t.id)}>取消</button></div>}</div>{t.completionResult&&<p className="text-xs text-emerald-700 mt-2">结果：{normalizeEmailText(t.completionResult)}</p>}</div>)}{!tasks.length&&<p className="text-xs text-surface-400">暂无跟进任务</p>}</div>
+    <div className="grid md:grid-cols-4 gap-2 pt-3 border-t border-surface-100"><select className="input" value={type} onChange={e=>setType(e.target.value as CrmTask['type'])}><option value="reply_customer">回复客户</option><option value="confirm_requirements">确认需求</option><option value="prepare_quote">准备报价</option><option value="follow_quote">跟进报价</option><option value="follow_sample">跟进样品</option><option value="confirm_order">确认订单</option><option value="supply_information">补充资料</option><option value="general_followup">一般跟进</option></select><input className="input md:col-span-2" value={content} onChange={e=>setContent(e.target.value)} placeholder="下一步要做什么*"/><select className="input" value={priority} onChange={e=>setPriority(e.target.value as CrmTask['priority'])}><option value="high">高优先级</option><option value="medium">中优先级</option><option value="low">低优先级</option></select><input className="input md:col-span-2" type="datetime-local" value={dueAt} onChange={e=>setDueAt(e.target.value)}/><button className="btn-primary md:col-span-2" onClick={create}>创建跟进任务</button></div>
+  </section>
+}

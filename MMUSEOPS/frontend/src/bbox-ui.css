@@ -1,0 +1,44 @@
+/* Consumer layout only; semantic values are maintained by the shared bbox-ui package. */
+html[data-bbox-color] body{font-family:var(--bbox-font)!important;background:var(--bbox-bg)!important;color:var(--bbox-text)!important}
+html[data-bbox-color] :is(button,input,textarea,select){font-family:var(--bbox-font);border-color:var(--bbox-border);color:var(--bbox-text);border-radius:var(--bbox-radius)}
+html[data-bbox-color] :is(input,textarea,select){background:var(--bbox-surface)!important}
+html[data-bbox-color] button{min-height:32px;box-shadow:none}
+html[data-bbox-color] :is(h1,h2,h3,strong){color:var(--bbox-text)}
+html[data-bbox-color] :is(.bg-white,.bg-gray-50,.bg-slate-50,.bg-zinc-50){background:var(--bbox-surface)!important}
+html[data-bbox-color] :is(.bg-gray-100,.bg-slate-100,.bg-zinc-100){background:var(--bbox-surface-alt)!important}
+html[data-bbox-color] :is(.text-gray-900,.text-slate-900,.text-gray-800,.text-slate-800,.text-gray-700,.text-slate-700){color:var(--bbox-text)!important}
+html[data-bbox-color] :is(.text-gray-400,.text-gray-500,.text-gray-600,.text-slate-400,.text-slate-500,.text-slate-600){color:var(--bbox-muted)!important}
+html[data-bbox-color] :is(.border-gray-100,.border-gray-200,.border-gray-300,.border-slate-200){border-color:var(--bbox-border)!important}
+html[data-bbox-color] :is(.glass-card,.glass-stat){background:var(--bbox-surface)!important;border-color:var(--bbox-border)!important;backdrop-filter:none!important;box-shadow:none!important;transform:none!important}
+html[data-bbox-color] :is(.glass-card:hover,.glass-stat:hover){transform:none!important}
+html[data-bbox-color] a{color:inherit}
+html[data-bbox-color] :is(.bg-emerald-50,.bg-green-50){background:var(--bbox-accent-soft)!important;color:var(--bbox-accent)!important}
+@media(max-width:1120px){html[data-bbox-color] main{min-width:0}html[data-bbox-color] :is(table,.overflow-x-auto){max-width:100%}}
+
+html[data-bbox-color] #root{--glass-bg:var(--bbox-surface);--glass-border:var(--bbox-border);--accent-blue:var(--bbox-accent);--glass-shadow:none}
+html[data-bbox-color] header{background:var(--bbox-surface-alt)!important;color:var(--bbox-text);border-color:var(--bbox-border)}
+html[data-bbox-material="glass"][data-bbox-reduce-transparency="false"] header{background:var(--bbox-glass)!important;backdrop-filter:blur(12px)}
+html[data-bbox-color] #bboxAppearanceButton.bbox-floating{top:10px;right:96px}
+html[data-bbox-color] main>main{background:var(--bbox-surface)}
+
+/* Actual CRM surface utilities and directory components (index.css / Dashboard / Layout). */
+html[data-bbox-color] [data-v29-ui],
+html[data-bbox-color] [class~="bg-[#f5f5f7]"],
+html[data-bbox-color] [class~="bg-[#f4f5f7]"]{background:var(--bbox-bg)!important}
+html[data-bbox-color] :is(.bg-surface-50,.bg-surface-100,[class~="bg-surface-50/65"],[class~="bg-white/80"],[class~="bg-white/75"],[class~="bg-white/70"],.pipeline-card,.stat-card,.glass,.glass-darker){background:var(--bbox-surface)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+html[data-bbox-color] :is(.bg-surface-200,.bg-surface-300){background:var(--bbox-surface-alt)!important}
+html[data-bbox-color] :is(.text-surface-700,.text-surface-800,.text-surface-900,h1,h2,h3,label){color:var(--bbox-text)!important}
+html[data-bbox-color] :is(.text-surface-300,.text-surface-400,.text-surface-500,.text-surface-600,.section-title){color:var(--bbox-muted)!important}
+html[data-bbox-color] :is(.border-surface-100,.border-surface-200,.border-surface-300,.divide-surface-100>*,.divide-surface-200>*){border-color:var(--bbox-border)!important}
+html[data-bbox-color] :is(.directory-control-button,.directory-icon-button,.directory-segment,.btn-outline){background:var(--bbox-surface)!important;color:var(--bbox-text)!important;border-color:var(--bbox-border)!important;backdrop-filter:none!important;box-shadow:none!important}
+html[data-bbox-color] :is(.directory-filter,.directory-reminder,.btn-ghost,.badge,.nav-item){color:var(--bbox-text)!important}
+html[data-bbox-color] :is(.directory-filter-active,.directory-reminder,.bg-accent-50,.chip.active){background:var(--bbox-accent-soft)!important;color:var(--bbox-accent)!important;box-shadow:none!important}
+html[data-bbox-color] :is(.directory-reminder strong,.directory-filter-active span,.text-accent-600,.text-accent-700){color:var(--bbox-accent)!important}
+html[data-bbox-color] :is(.directory-segment-active,.bg-surface-900,.btn-primary){background:var(--bbox-accent)!important;color:var(--bbox-accent-text)!important}
+html[data-bbox-color] :is(.directory-segment-active strong,.bg-surface-900 .text-white){color:var(--bbox-accent-text)!important}
+html[data-bbox-color] :is(.directory-filter,.directory-control-button,.directory-icon-button,.directory-reminder,.directory-segment,.btn-ghost,[class~="hover:bg-surface-50"],[class~="hover:bg-surface-100"],[class~="hover:bg-white"]):hover{background:var(--bbox-surface-alt)!important;color:var(--bbox-text)!important}
+html[data-bbox-color] [data-customer-row]{background:var(--bbox-surface)!important;color:var(--bbox-text)!important;border-radius:0}
+html[data-bbox-color] [data-customer-row]:hover{background:var(--bbox-surface-alt)!important;color:var(--bbox-text)!important}
+html[data-bbox-color] :is(input,textarea)::placeholder{color:var(--bbox-muted)!important;opacity:1}
+html[data-bbox-color] [data-v29-ui] :is(button,a,summary,select,input,textarea,[tabindex]):focus-visible{outline-color:var(--bbox-focus)!important}
+@media(prefers-reduced-transparency:reduce){html[data-bbox-color] header{background:var(--bbox-surface-alt)!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
